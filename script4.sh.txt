@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Script 4: Log File Analyzer
+
+LOGFILE="sample.log"
+KEYWORD="error"
+COUNT=0
+
+# Create sample log file (for online use)
+echo "Creating sample log file..."
+echo "System started successfully" > $LOGFILE
+echo "Error: failed to load module" >> $LOGFILE
+echo "User logged in" >> $LOGFILE
+echo "Warning: low memory" >> $LOGFILE
+echo "Error: disk not found" >> $LOGFILE
+
+echo ""
+echo "Analyzing log file..."
+echo "----------------------"
+
+# Read file line by line
+while IFS= read -r LINE; do
+    if echo "$LINE" | grep -iq "$KEYWORD"; then
+        COUNT=$((COUNT + 1))
+    fi
+done < "$LOGFILE"
+
+# Output result
+echo "Keyword '$KEYWORD' found $COUNT times in $LOGFILE"
+
+# Show last matching lines
+echo ""
+echo "Last matching lines:"
+grep -i "$KEYWORD" "$LOGFILE" | tail -5

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Script 1: System Identity Report
+
+STUDENT_NAME="Arun"
+SOFTWARE_CHOICE="Git"
+
+KERNEL=$(uname -r)
+USER_NAME=$(whoami)
+HOME_DIR=$HOME
+DATE=$(date)
+UPTIME=$(uptime)
+
+DISTRO=$(cat /etc/os-release 2>/dev/null | grep PRETTY_NAME | cut -d '"' -f2)
+
+echo "================================"
+echo " Open Source Audit - $STUDENT_NAME"
+echo "================================"
+echo "Software : $SOFTWARE_CHOICE"
+echo "Distro   : $DISTRO"
+echo "Kernel   : $KERNEL"
+echo "User     : $USER_NAME"
+echo "Home Dir : $HOME_DIR"
+echo "Uptime   : $UPTIME"
+echo "Date     : $DATE"
+echo "License  : GPL (Open Source Linux License)"
